@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Built application files
 *.apk
 *.ap_
@@ -55,6 +56,8 @@ freeline.py
 freeline/
 freeline_project_description.json
 =======
+=======
+>>>>>>> 0ad7995ca3d87177a742ac4f766f2480463b52d5
 *.iml
 .gradle
 /local.properties
@@ -64,4 +67,7 @@ freeline_project_description.json
 /build
 /captures
 .externalNativeBuild
+<<<<<<< HEAD
 >>>>>>> first commit
+=======
+>>>>>>> 0ad7995ca3d87177a742ac4f766f2480463b52d5
