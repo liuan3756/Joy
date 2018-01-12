@@ -40,15 +40,8 @@ public class WeatherForecastBean {
 	public String getTempDescribe() {
 		String result = "";
 		Matcher m;
-		Pattern p = Pattern.compile("([1-9]\\d*\\.?\\d*)|(0\\.\\d*[1-9])");
-		m = p.matcher(this.lowTemp);
-		if (m.find()) {
-			result += m.group();
-		}
-		m = p.matcher(this.highTemp);
-		if (m.find()) {
-			result += "~" + m.group() + "°C";
-		}
+		result += Pattern.compile("[^0-9]").matcher(lowTemp).replaceAll("");
+		result += Pattern.compile("[^0-9]").matcher(highTemp).replaceAll("");
 		return result;
 	}
 }
