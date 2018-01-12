@@ -26,13 +26,14 @@ public class NetWork {
 		return netWork;
 	}
 	
-	public Call<WeatherBean> loadWeatherInfo(final TaskCallBack<WeatherBean> taskCallBack) {
+	public Call<WeatherBean> loadWeatherInfo(String cityName, final TaskCallBack<WeatherBean> taskCallBack) {
 		Retrofit retrofit = new Retrofit.Builder()
 				.addConverterFactory(GsonConverterFactory.create())
 				.baseUrl("http://www.sojson.com/open/api/weather/")
 				.build();
 		TVService service = retrofit.create(TVService.class);
-		Call<WeatherBean> call = service.login();
+		Call<WeatherBean> call = service.getWeather(cityName);
+		System.out.println("requestUrl = " + call.request().url().toString());
 		call.enqueue(new Callback<WeatherBean>() {
 			@Override
 			public void onResponse(Call<WeatherBean> call, Response<WeatherBean> response) {
@@ -48,5 +49,4 @@ public class NetWork {
 		});
 		return call;
 	}
-	
 }
