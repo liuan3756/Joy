@@ -2,7 +2,6 @@ package com.test.liuan.joy.bean;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class WeatherForecastBean {
@@ -39,9 +38,12 @@ public class WeatherForecastBean {
 	
 	public String getTempDescribe() {
 		String result = "";
-		Matcher m;
-		result += Pattern.compile("[^0-9]").matcher(lowTemp).replaceAll("");
-		result += Pattern.compile("[^0-9]").matcher(highTemp).replaceAll("");
+		int low = Integer.parseInt(Pattern.compile("[^0-9]").matcher(lowTemp).replaceAll("")) / 10;
+		int high = Integer.parseInt(Pattern.compile("[^0-9]").matcher(highTemp).replaceAll("")) / 10;
+		result += low;
+		result += " ~ ";
+		result += high;
+		result += "°C";
 		return result;
 	}
 }

@@ -1,6 +1,5 @@
 package com.test.liuan.joy.tv;
 
-import com.test.liuan.joy.bean.WeatherBean;
 import com.test.liuan.joy.bean.WeatherDataBean;
 
 public interface MainContract {
@@ -9,7 +8,7 @@ public interface MainContract {
 		
 		void loadWeatherInfoSuccess(WeatherDataBean weatherDataBean);
 		
-		void loadWeatherInfoError(Throwable throwable);
+		void loadWeatherInfoError(String message);
 	}
 	
 	interface Presenter {

@@ -1,6 +1,7 @@
 package com.test.liuan.joy.tv;
 
 import com.test.liuan.joy.bean.WeatherBean;
+import com.test.liuan.joy.bean.WeatherDataBean;
 import com.test.liuan.joy.bean.WeatherForecastBean;
 import com.test.liuan.joy.net.NetWork;
 import com.test.liuan.joy.net.TaskCallBack;
@@ -32,12 +33,17 @@ public class MainPresenter implements MainContract.Presenter {
 				.loadWeatherInfo(CITY_NAME, new TaskCallBack<WeatherBean>() {
 					@Override
 					public void onSuccess(WeatherBean weatherBean) {
-						view.loadWeatherInfoSuccess(weatherBean.weatherDataBean);
+						WeatherDataBean weatherDataBean = weatherBean.weatherDataBean;
+						if (weatherDataBean != null) {
+							view.loadWeatherInfoSuccess(weatherDataBean);
+						} else {
+							view.loadWeatherInfoError(weatherBean.message);
+						}
 					}
 					
 					@Override
 					public void onError(Throwable throwable) {
-						view.loadWeatherInfoError(throwable);
+						view.loadWeatherInfoError(throwable.getMessage());
 					}
 				});
 		

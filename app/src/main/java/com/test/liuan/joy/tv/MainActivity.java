@@ -60,8 +60,8 @@ public class MainActivity extends Activity implements MainContract.View {
 	}
 	
 	@Override
-	public void loadWeatherInfoError(Throwable throwable) {
-		Toast.makeText(this, throwable.toString(), Toast.LENGTH_SHORT).show();
+	public void loadWeatherInfoError(String message) {
+		Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 	}
 	
 }
