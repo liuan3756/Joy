@@ -1,62 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:background="@android:color/white"
-	android:orientation="horizontal"
-	tools:context="com.test.liuan.joy.tv.MainActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="horizontal">
 	
-	<RelativeLayout
+	<LinearLayout
+		android:id="@+id/llBackGround"
 		android:layout_width="0dp"
 		android:layout_height="match_parent"
-		android:layout_weight="3">
+		android:layout_weight="1"
+		android:orientation="vertical">
 		
-		<com.test.liuan.joy.widget.ClockView
+		<TextView
+			android:id="@+id/tvDate"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_alignParentLeft="true"
-			android:layout_alignParentStart="true"
-			android:layout_centerVertical="true"
-			android:text="333333"
-			android:textSize="180sp"
+			android:includeFontPadding="false"
+			android:textSize="40sp"
+			tools:text="2018年12月31日 周六"/>
+		
+		<TextView
+			android:id="@+id/tvTime"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:includeFontPadding="false"
+			android:textSize="130sp"
 			tools:text="12:34:56"/>
-		
-		<Chronometer
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"/>
-		
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_alignParentBottom="true"
-			android:textSize="80sp"
-			tools:text="-20~-30°C 小雨"/>
-		
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_alignParentLeft="true"
-			android:layout_alignParentStart="true"
-			android:layout_alignParentTop="true"
-			android:textSize="50sp"
-			tools:text="2018年11月22日 星期六"/>
+	</LinearLayout>
+	
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent"
+		android:orientation="vertical">
 		
 		<TextView
 			android:id="@+id/tvTemp"
-			android:layout_width="wrap_content"
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_alignParentEnd="true"
-			android:layout_alignParentRight="true"
-			android:textSize="50sp"
-			tools:text="30°C"/>
-	
-	</RelativeLayout>
-	
-	<android.support.v7.widget.RecyclerView
-		android:id="@+id/recyclerViewForecast"
-		android:layout_width="0dp"
-		android:layout_height="match_parent"
-		android:layout_weight="1"/>
+			android:lines="1"
+			android:textSize="30sp"
+			tools:text="当前温度 10"/>
+		
+		<android.support.v7.widget.RecyclerView
+			android:id="@+id/recyclerViewForecast"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:background="@android:color/transparent"
+			android:layout_weight="1"
+			tools:ignore="NestedWeights"/>
+	</LinearLayout>
+
 </LinearLayout>

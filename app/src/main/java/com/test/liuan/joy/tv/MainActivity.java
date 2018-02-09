@@ -1,9 +1,12 @@
 package com.test.liuan.joy.tv;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,8 +21,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends Activity implements MainContract.View {
-	private static final String CITY_NAME = "厦门";
 	private MainPresenter mainPresenter;
+	@BindView(R.id.llBackGround)
+	LinearLayout llBackGround;
+	@BindView(R.id.tvDate)
+	TextView tvDate;
+	@BindView(R.id.tvTime)
+	TextView tvTime;
 	@BindView(R.id.tvTemp)
 	TextView tvTemp;
 	@BindView(R.id.recyclerViewForecast)
@@ -37,6 +45,8 @@ public class MainActivity extends Activity implements MainContract.View {
 		this.mainPresenter = new MainPresenter(this);
 		
 		this.mainPresenter.loadWeatherInfo();
+		this.mainPresenter.loadTime();
+		this.mainPresenter.loadBackGroundColor();
 	}
 	
 	private void initView() {
@@ -46,13 +56,23 @@ public class MainActivity extends Activity implements MainContract.View {
 	}
 	
 	@Override
-	public void showDate(String date) {
+	public void showRGB(int red, int green, int blue) {
+		this.llBackGround.setBackgroundColor(Color.rgb(red, green, blue));
+	}
 	
+	@Override
+	public void showDateAndTime(String date, String time) {
+		if (!this.tvDate.getText().toString().equals(date)) {
+			this.tvDate.setText(date);
+		}
+		this.tvTime.setText(time);
 	}
 	
 	@Override
 	public void loadWeatherInfoSuccess(WeatherDataBean weatherDataBean) {
-		this.tvTemp.setText(weatherDataBean.nowTemperature);
+		this.tvTemp.setText(
+				String.format(
+						getString(R.string.format_current_temp), weatherDataBean.nowTemperature));
 		
 		this.forecastBeans.clear();
 		this.forecastBeans.addAll(weatherDataBean.getFutureWeatherInfoList());

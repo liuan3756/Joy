@@ -1,3 +1,4 @@
 <resources>
 	<string name="app_name">Joy</string>
+	<string name="format_current_temp">当前温度 %s°</string>
 </resources>

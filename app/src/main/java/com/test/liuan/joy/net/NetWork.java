@@ -45,6 +45,7 @@ public class NetWork {
 			@Override
 			public void onFailure(Call<WeatherBean> call, Throwable t) {
 				t.printStackTrace();
+				taskCallBack.onError(t);
 			}
 		});
 		return call;

@@ -4,7 +4,10 @@ import com.test.liuan.joy.bean.WeatherDataBean;
 
 public interface MainContract {
 	interface View {
-		void showDate(String date);
+		
+		void showRGB(int red, int green, int blue);
+		
+		void showDateAndTime(String date, String time);
 		
 		void loadWeatherInfoSuccess(WeatherDataBean weatherDataBean);
 		
@@ -12,6 +15,8 @@ public interface MainContract {
 	}
 	
 	interface Presenter {
+		
+		void loadBackGroundColor();
 		void loadTime();
 		
 		void loadWeatherInfo();
