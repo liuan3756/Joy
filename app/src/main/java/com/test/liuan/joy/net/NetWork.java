@@ -26,7 +26,7 @@ public class NetWork {
 		return netWork;
 	}
 	
-	public Call<WeatherBean> loadWeatherInfo(String cityName, final TaskCallBack<WeatherBean> taskCallBack) {
+	public void loadWeatherInfo(String cityName, final TaskCallBack<WeatherBean> taskCallBack) {
 		Retrofit retrofit = new Retrofit.Builder()
 				.addConverterFactory(GsonConverterFactory.create())
 				.baseUrl("http://www.sojson.com/open/api/weather/")
@@ -48,6 +48,5 @@ public class NetWork {
 				taskCallBack.onError(t);
 			}
 		});
-		return call;
 	}
 }

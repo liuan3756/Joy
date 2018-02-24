@@ -90,7 +90,6 @@ public class MainPresenter implements MainContract.Presenter {
 						String date = simpleDateFormat.format(new Date(System.currentTimeMillis()));
 						String[] dataAndTime = date.split("&");
 						view.showDateAndTime(dataAndTime[0], dataAndTime[1]);
-						// System.out.println("dsadas " + date);
 					}
 				});
 	}
