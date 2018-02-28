@@ -38,20 +38,23 @@ public class MainPresenter implements MainContract.Presenter {
 	private float stepGreen = 0;
 	private float stepBlue = 0;
 	
+	private Random random;
+	
 	MainPresenter(final MainContract.View view) {
 		this.view = view;
 	}
 	
 	@Override
 	public void loadBackGroundColor() {
-		
+		if (random == null) {
+			random = new Random();
+		}
 		Observable.interval(CHANGE_TARGET_COLOR_MILLIS, TimeUnit.MILLISECONDS)
 				.observeOn(AndroidSchedulers.mainThread())
 				.subscribeOn(AndroidSchedulers.mainThread())
 				.subscribe(new Action1<Long>() {
 					@Override
 					public void call(Long aLong) {
-						Random random = new Random();
 						targetRed = random.nextInt(255);
 						targetGreen = random.nextInt(255);
 						targetBlue = random.nextInt(255);
