@@ -23,27 +23,29 @@ public class MainPresenter implements MainContract.Presenter {
 	private static final int VALIDATE_COLOR_MILLIS = 40;
 	private static final float DIVISOR = (float) CHANGE_TARGET_COLOR_MILLIS / (float) VALIDATE_COLOR_MILLIS;
 	private MainContract.View view;
-	
+
 	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 E&HH:mm:ss", Locale.CHINA);
-	
+
 	private float currentRed = 128;
 	private float currentGreen = 128;
 	private float currentBlue = 128;
-	
+
 	private int targetRed = 0;
 	private int targetGreen = 0;
 	private int targetBlue = 0;
-	
+
 	private float stepRed = 0;
 	private float stepGreen = 0;
 	private float stepBlue = 0;
-	
+
 	private Random random;
-	
+
+	private Observable observable;
+
 	MainPresenter(final MainContract.View view) {
 		this.view = view;
 	}
-	
+
 	@Override
 	public void loadBackGroundColor() {
 		if (random == null) {
@@ -59,14 +61,14 @@ public class MainPresenter implements MainContract.Presenter {
 						targetGreen = random.nextInt(255);
 						targetBlue = random.nextInt(255);
 						System.out.println("targetRed " + targetRed + " targetGreen " + targetGreen + " targetBlue " + targetBlue);
-						
+
 						stepRed = (targetRed - currentRed) / DIVISOR;
 						stepGreen = (targetGreen - currentGreen) / DIVISOR;
 						stepBlue = (targetBlue - currentBlue) / DIVISOR;
 						System.out.println("stepRed " + stepRed + " stepGreen " + stepGreen + " stepBlue " + stepBlue);
 					}
 				});
-		
+
 		Observable.interval(VALIDATE_COLOR_MILLIS, TimeUnit.MILLISECONDS)
 				.observeOn(AndroidSchedulers.mainThread())
 				.subscribeOn(AndroidSchedulers.mainThread())
@@ -81,7 +83,7 @@ public class MainPresenter implements MainContract.Presenter {
 					}
 				});
 	}
-	
+
 	@Override
 	public void loadTime() {
 		Observable.interval(1, TimeUnit.SECONDS)
@@ -96,7 +98,7 @@ public class MainPresenter implements MainContract.Presenter {
 					}
 				});
 	}
-	
+
 	@Override
 	public void loadWeatherInfo() {
 		NetWork.getInstance()
@@ -110,12 +112,17 @@ public class MainPresenter implements MainContract.Presenter {
 							view.loadWeatherInfoError(weatherBean.message);
 						}
 					}
-					
+
 					@Override
 					public void onError(Throwable throwable) {
 						view.loadWeatherInfoError(throwable.getMessage());
 					}
 				});
-		
+
+	}
+
+	@Override
+	public void finishLoad() {
+
 	}
 }

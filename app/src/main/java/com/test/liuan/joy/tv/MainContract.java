@@ -20,6 +20,7 @@ public interface MainContract {
 		void loadTime();
 		
 		void loadWeatherInfo();
+		void finishLoad();
 	}
 	
 }
