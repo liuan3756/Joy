@@ -17,6 +17,7 @@ import rx.functions.Action1;
 
 public class MainPresenter implements MainContract.Presenter {
 	private static final String CITY_NAME = "厦门";
+	private static final String CITY_CODE = "101230201";
 	/** 修改目标颜色间隔时间 */
 	private static final int CHANGE_TARGET_COLOR_MILLIS = 5000;
 	/** 刷新界面间隔时间 */
@@ -60,12 +61,12 @@ public class MainPresenter implements MainContract.Presenter {
 						targetRed = random.nextInt(255);
 						targetGreen = random.nextInt(255);
 						targetBlue = random.nextInt(255);
-						System.out.println("targetRed " + targetRed + " targetGreen " + targetGreen + " targetBlue " + targetBlue);
+//						System.out.println("targetRed " + targetRed + " targetGreen " + targetGreen + " targetBlue " + targetBlue);
 
 						stepRed = (targetRed - currentRed) / DIVISOR;
 						stepGreen = (targetGreen - currentGreen) / DIVISOR;
 						stepBlue = (targetBlue - currentBlue) / DIVISOR;
-						System.out.println("stepRed " + stepRed + " stepGreen " + stepGreen + " stepBlue " + stepBlue);
+//						System.out.println("stepRed " + stepRed + " stepGreen " + stepGreen + " stepBlue " + stepBlue);
 					}
 				});
 
@@ -79,7 +80,7 @@ public class MainPresenter implements MainContract.Presenter {
 						currentGreen += stepGreen;
 						currentBlue += stepBlue;
 						view.showRGB((int) currentRed, (int) currentGreen, (int) currentBlue);
-						System.out.println("currentRed " + currentRed + " currentGreen " + currentGreen + " currentBlue " + currentBlue);
+//						System.out.println("currentRed " + currentRed + " currentGreen " + currentGreen + " currentBlue " + currentBlue);
 					}
 				});
 	}
@@ -102,7 +103,7 @@ public class MainPresenter implements MainContract.Presenter {
 	@Override
 	public void loadWeatherInfo() {
 		NetWork.getInstance()
-				.loadWeatherInfo(CITY_NAME, new TaskCallBack<WeatherBean>() {
+				.loadWeatherInfo(CITY_CODE, new TaskCallBack<WeatherBean>() {
 					@Override
 					public void onSuccess(WeatherBean weatherBean) {
 						WeatherDataBean weatherDataBean = weatherBean.weatherDataBean;
